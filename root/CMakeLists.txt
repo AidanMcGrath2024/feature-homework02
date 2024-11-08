@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.23) # Specify CMake version.
 project(homework
     VERSION 1.0
-    DESCRIPTION "A brief CMake experiment"
+    DESCRIPTION "Homework 02"
     LANGUAGES CXX)# A project name. This can be anything.
 set(CMAKE_CXX_STANDARD 20) # Specify C++ version.
 include_directories(${CMAKE_SOURCE_DIR}/include) # header file folder.
