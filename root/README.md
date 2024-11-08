@@ -1,4 +1,5 @@
 #This is a README file for our Homework 2 Submission
+
 Questions for Prof. Miller:
 
 1. Is a 4-person group allowed for HW2?
@@ -13,4 +14,4 @@ Questions for Prof. Miller:
 
 3. It's stated in the homework that we should use 'C' as much as possible and rely on C++ as the class necessitates, which questions     on HW2 will you allow us to use C++ in?
 
-    
+4. Why did you consider our Monopoly project proposal 'ambitious', should we scope it down?
