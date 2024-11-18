@@ -9,7 +9,8 @@
 #include <atomic>
 
 // Simulates the air traffic controller (ATC) and aircraft communication
-class ATC {
+class ATC
+{
 private:
     std::mutex mtx;                     // Mutex for synchronizing ATC access
     std::condition_variable cv;         // Condition variable to manage ATC sleep/wake state
@@ -23,7 +24,8 @@ public:
 };
 
 // Manages the traffic pattern and aircraft landing logic
-class Airport {
+class Airport 
+{
 private:
     ATC& atc;                           // Reference to the ATC
     std::mutex patternMtx;              // Mutex for managing traffic pattern
