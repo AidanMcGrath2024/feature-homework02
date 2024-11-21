@@ -3,24 +3,30 @@
 #include <string>
 #include <algorithm>
 #include <memory>
+#include <vector>
 using namespace std;
 
 class Sensor {
 public:
     Sensor() {};
-    virtual gatherData() {};
-    virtual processData() {};
+    virtual void gatherData() {};
+    virtual void processData() {};
+    virtual string getType() const = 0; // making a getType function so that we can print out the type of the sensors when added or deleted
+    virtual ~Sensor() {} // destructor
 };
 
 class Radar : public Sensor
 {
 public:
     Radar() {};
-    virtual gatherData() {
+    virtual void gatherData() {
         cout << "Gathering data from Radar Sensor." << endl;
     }
-    virtual processData() {
+    virtual void processData() {
         cout << "Processing data from Radar Sensor." << endl;
+    }
+    string getType() const {
+        return "Radar"; // the getType function for Radar will return "Radar"
     }
 
 };
@@ -29,11 +35,14 @@ class LiDAR : public Sensor
 {
 public:
     LiDAR() {};
-    virtual gatherData() {
+    virtual void gatherData() {
         cout << "Gathering data from LiDAR Sensor." << endl;
     }
-    virtual processData() {
+    virtual void processData() {
         cout << "Processing data from LiDAR Sensor." << endl;
+    }
+    string getType() const {
+        return "LiDAR"; // the getType function for LiDAR will return "LiDAR"
     }
 
 };
@@ -42,34 +51,57 @@ class IMU : public Sensor
 {
 public:
     IMU() {};
-    virtual gatherData() {
+    virtual void gatherData() {
         cout << "Gathering data from IMU Sensor." << endl;
     }
-    virtual processData() {
+    virtual void processData() {
         cout << "Processing data from IMU Sensor." << endl;
+    }
+    string getType() const {
+        return "IMU"; // the getType function for IMU will return "IMU"
     }
 
 };
 
 class SensorFactory {
     public:
-    static Sensor* createSensor(string sensorType) {
-        if (sensorType == Sensor.gatherdata()){
-            int* SensorMemory = new int;
+    static Sensor* createSensor(const string& sensorType) {
+        if (sensorType == "Radar"){ // if the sensor type is Radar...
+            return new Radar(); // then a Radar sensor is added to the heap
         }
-        else {
-            return nullptr;
+        else if (sensorType == "LiDAR") { // if the sensor type is LiDAR...
+            return new LiDAR(); // then a LiDAR sensor is added to the heap
         }
-
+        else if (sensorType == "IMU") { // if the sensor type is IMU...
+            return new IMU(); // then an IMU sensor is added to the heap
+        }
+        else { // otherwise, 
+            return nullptr; // a nullpointer is returned
+        }
     }
-}
+};
 
 class AerospaceControlSystem {
     private:
-    int* SensorPointer
+    vector<Sensor*> sensorPointers; // making a vector to store the sensor pointers
+
     public:
-    int* getterForSensorPointer() const {
-        return SensorPointer;
+    void addSensor(Sensor* sensor) { // lowercase sensor in this case represents the pointer associated with the sensor in question
+        sensorPointers.push_back(sensor); // adding the sensor pointer to the sensorPointers vector
+        cout << "sensor created " << sensor << " of type """ << sensor->getType() << """" << endl; // sensor creation message
+    }
+    void monitorAndAdjust() {
+        for(int i = 0; i < sensorPointers.size(); i++){
+            sensorPointers[i]->gatherData(); // invoking the sensor's gatherData() function
+            sensorPointers[i]->processData(); // invoking the sensor's processData() function
+            cout << "Adjusting controls based on sensor data." << endl;
+        }
+    }
+    ~AerospaceControlSystem() { // a destructor that will clean up the memeory of the sensorPointers vector
+        for (Sensor* sensor : sensorPointers) {
+            cout << "sensor deleted " << sensor << " of type """ << sensor->getType() << """" << endl; // sensor deletion message (before its actually deleted, I know it hasn't been "deleted" yet)
+            delete sensor;
+        }
     }
 
-}
+};
