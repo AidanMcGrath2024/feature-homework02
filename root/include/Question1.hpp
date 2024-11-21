@@ -1,4 +1,3 @@
-#Question1headerfilesforcpp
 #include <iostream>
 #include <vector>
 #include <string>
@@ -54,7 +53,23 @@ public:
 
 class SensorFactory {
     public:
-    static ptr createSensor(string ) {
+    static Sensor* createSensor(string sensorType) {
+        if (sensorType == Sensor.gatherdata()){
+            int* SensorMemory = new int;
+        }
+        else {
+            return nullptr;
+        }
 
     }
+}
+
+class AerospaceControlSystem {
+    private:
+    int* SensorPointer
+    public:
+    int* getterForSensorPointer() const {
+        return SensorPointer;
+    }
+
 }
