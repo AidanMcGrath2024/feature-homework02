@@ -9,20 +9,20 @@ using namespace std;
 class Sensor {
 public:
     Sensor() {};
-    virtual void gatherData() {};
-    virtual void processData() {};
+    virtual void gatherData() {}; // simulating data gathering
+    virtual void processData() {}; // simulating data processing
     virtual string getType() const = 0; // making a getType function so that we can print out the type of the sensors when added or deleted
-    virtual ~Sensor() {} // destructor
+    virtual ~Sensor() {} // destructor for the sensor
 };
 
-class Radar : public Sensor
+class Radar : public Sensor // Radar class is derived from sensor 
 {
 public:
-    Radar() {};
-    virtual void gatherData() {
+    Radar() {}; 
+    virtual void gatherData() { // Radar's gather data function
         cout << "Gathering data from Radar Sensor." << endl;
     }
-    virtual void processData() {
+    virtual void processData() { // Radar's process data function
         cout << "Processing data from Radar Sensor." << endl;
     }
     string getType() const {
@@ -35,10 +35,10 @@ class LiDAR : public Sensor
 {
 public:
     LiDAR() {};
-    virtual void gatherData() {
+    virtual void gatherData() { // LiDAR's gather data function
         cout << "Gathering data from LiDAR Sensor." << endl;
     }
-    virtual void processData() {
+    virtual void processData() { // LiDAR's process data function
         cout << "Processing data from LiDAR Sensor." << endl;
     }
     string getType() const {
@@ -51,10 +51,10 @@ class IMU : public Sensor
 {
 public:
     IMU() {};
-    virtual void gatherData() {
+    virtual void gatherData() { // IMU's gather data function
         cout << "Gathering data from IMU Sensor." << endl;
     }
-    virtual void processData() {
+    virtual void processData() { // IMU's process data function
         cout << "Processing data from IMU Sensor." << endl;
     }
     string getType() const {
@@ -98,7 +98,7 @@ class AerospaceControlSystem {
         }
     }
     ~AerospaceControlSystem() { // a destructor that will clean up the memeory of the sensorPointers vector
-        for (Sensor* sensor : sensorPointers) {
+        for (Sensor* sensor : sensorPointers) { // loop that iterates through all pointers in sensorPointers
             cout << "sensor deleted " << sensor << " of type """ << sensor->getType() << """" << endl; // sensor deletion message (before its actually deleted, I know it hasn't been "deleted" yet)
             delete sensor;
         }
