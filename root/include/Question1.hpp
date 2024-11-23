@@ -19,10 +19,10 @@ class Radar : public Sensor // Radar class is derived from sensor
 {
 public:
     Radar() {}; 
-    virtual void gatherData() { // Radar's gather data function
+    void gatherData() { // Radar's gather data function
         cout << "Gathering data from Radar Sensor." << endl;
     }
-    virtual void processData() { // Radar's process data function
+    void processData() { // Radar's process data function
         cout << "Processing data from Radar Sensor." << endl;
     }
     string getType() const {
@@ -35,10 +35,10 @@ class LiDAR : public Sensor
 {
 public:
     LiDAR() {};
-    virtual void gatherData() { // LiDAR's gather data function
+    void gatherData() { // LiDAR's gather data function
         cout << "Gathering data from LiDAR Sensor." << endl;
     }
-    virtual void processData() { // LiDAR's process data function
+    void processData() { // LiDAR's process data function
         cout << "Processing data from LiDAR Sensor." << endl;
     }
     string getType() const {
@@ -51,10 +51,10 @@ class IMU : public Sensor
 {
 public:
     IMU() {};
-    virtual void gatherData() { // IMU's gather data function
+    void gatherData() { // IMU's gather data function
         cout << "Gathering data from IMU Sensor." << endl;
     }
-    virtual void processData() { // IMU's process data function
+    void processData() { // IMU's process data function
         cout << "Processing data from IMU Sensor." << endl;
     }
     string getType() const {
@@ -105,3 +105,5 @@ class AerospaceControlSystem {
     }
 
 };
+
+void question1();
