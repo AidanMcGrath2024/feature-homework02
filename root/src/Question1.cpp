@@ -23,6 +23,4 @@ int main() {
     }
 
     ctrlSys.monitorAndAdjust(); // invoking the monitorAndAdjust function - which will iterate through all sensors stored in the pointer vector
-
-    return 0;
 }
